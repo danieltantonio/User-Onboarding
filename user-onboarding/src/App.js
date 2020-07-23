@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import Form from './components/Form';
 import formSchema from './schema/formSchema';
@@ -44,12 +45,22 @@ function App() {
       
       setFormValues({
         ...formValues,
-        [name]: true
+        [name]: value
       })
   };
 
   const checkboxChange = (name, isChecked) => {
     setFormValues({...formValues})
+  };
+
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        setUsers([res.data, ...users]);
+        setFormValues(initFormValues);
+      }).catch(err => {
+        debugger;
+      });
   };
 
   const submit = () => {
@@ -58,7 +69,11 @@ function App() {
       email: formValues.email.trim(),
       password: formValues.password.trim()
     }
+
+    postNewUser(newUser)
   }
+
+  
 
   useEffect(() => {
     formSchema.isValid(formValues)
@@ -66,6 +81,16 @@ function App() {
         setBtnDisabled(!valid)
       })
   }, [formValues]);
+
+  useEffect(() => {
+    axios.post('https://reqres.in/api/users')
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        debugger;
+      })
+  }, [])
 
   return (
     <div>
@@ -78,6 +103,13 @@ function App() {
         submit={submit}
         disabled={btnDisabled}
       />
+      {
+        users.map(user => {
+          return(
+            user.name
+          )
+        })
+      }
     </div>
   );
 };

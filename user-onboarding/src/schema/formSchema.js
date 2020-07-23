@@ -14,7 +14,8 @@ const formSchema = yup.object().shape({
       .min(6, "Password must contain 6 or more characters.")
       .required("A password is required."),
     tos: yup
-      .boolean()
+      .string()
+      .matches('true')
       .required("You must agree to our ToS")
 });
 

@@ -28,10 +28,10 @@ import React, { useEffect, useState } from 'react';
               <button disabled={disabled}>Submit</button>
             </div>
             <div className='errors'>
-                <div>ERRORS: Name</div>
-                <div>ERRORS: Email</div>
-                <div>ERRORS: Password</div>
-                <div>ERRORS: Terms of Service</div>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.tos}</div>
             </div>
           </div>
           <div className='form-group inputs'>
@@ -65,8 +65,8 @@ import React, { useEffect, useState } from 'react';
                   <input
                     type='radio'
                     name='tos'
-                    value={true}
-                    checked={values.tos === true}
+                    value='true'
+                    checked={values.tos === 'true'}
                     onChange={onInputChange}
                   />
               </label>
