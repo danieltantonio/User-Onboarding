@@ -1,4 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import styled, { keyframes } from 'styled-components'
+
+const StyledForm = styled.div`
+
+  background: #373737;
+  color: white;
+
+  button {
+    background: lightgreen;
+    padding: 12px 24px;
+    border: 1px solid lightgreen;
+    border-radius: 10%;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    border: 1px solid red;
+    background: rgba(0,0,0,0);
+    color: red;
+  }
+`;
 
  export default function Form(props) {
      const { 
@@ -21,6 +43,7 @@ import React, { useEffect, useState } from 'react';
      };
 
     return (
+      <StyledForm>
       <form onSubmit={onSubmit}>
           <div className='form-header form-group'>
             <div>
@@ -72,5 +95,6 @@ import React, { useEffect, useState } from 'react';
               </label>
           </div>
       </form>
+      </StyledForm>
     );
 }

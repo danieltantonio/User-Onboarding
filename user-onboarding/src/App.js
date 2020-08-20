@@ -106,7 +106,10 @@ function App() {
       {
         users.map(user => {
           return(
-            user.name
+            <div>
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+            </div>
           )
         })
       }
