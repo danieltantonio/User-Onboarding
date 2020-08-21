@@ -51,3 +51,5 @@ describe('Inputs and buttons', () => {
         .click()
   })
 })
+
+// Form works
